@@ -18,24 +18,35 @@ const Body = () => {
   };
 
   useEffect(() => {
-    fetchData()
-  },[]);
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
     const json = await data.json();
 
-  console.log(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+    console.log(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
 
-    setRestaurantList(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-    setFilteredRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-
-  }
+    setRestaurantList(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   const onlineStatus = useOnlineStatus();
 
-  if(onlineStatus === false){
-    return <h1>Looks like you are offline!!! Please check your internet connection.</h1>
+  if (onlineStatus === false) {
+    return (
+      <h1>
+        Looks like you are offline!!! Please check your internet connection.
+      </h1>
+    );
   }
 
   if (restaurantList.length === 0) {
@@ -44,22 +55,24 @@ const Body = () => {
 
   const { loggedInUser, setUserName } = useContext(UserContext);
 
-
   return (
-
-    
-
     <div className="body">
       <div className="flex justify-start mb-2">
         <div className="m-6">
-          <input className="p-1 m-1 border border-black-200"
+          <input
+            className="p-1 m-1 border border-black-200"
             type="text"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
-          <button className="bg-green-200 py-1 px-2 m-1 rounded-lg" onClick={handleClick}>Search</button>
+          <button
+            className="bg-green-200 py-1 px-2 m-1 rounded-lg"
+            onClick={handleClick}
+          >
+            Search
+          </button>
         </div>
         <button
           onClick={() => {
@@ -71,11 +84,21 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
-        <input type="text" className="m-2 p-2 border border-black" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} />
+        <input
+          type="text"
+          className="m-2 p-2 border border-black"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </div>
       <div className="flex flex-wrap justify-between">
         {filteredRestauarnts.map((restaurant) => (
-          <Link key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}><RestrauntCard resData={restaurant} /> </Link>
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
+          >
+            <RestrauntCard resData={restaurant} />{" "}
+          </Link>
         ))}
       </div>
     </div>

@@ -11,7 +11,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 //import Grocery from "./components/Grocery";
 
-const Grocery = lazy(() => {import("./components/Grocery")});
+const Grocery = lazy(() => {
+  import("./components/Grocery");
+});
 
 const appRouter = createBrowserRouter([
   {
@@ -35,17 +37,17 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
       },
-      {
+      /* {
         path: "/grocery",
         element: (
         <Suspense fallback={<h1>Loading..</h1>}> 
         <Grocery /> 
         </Suspense>
         ),
-      },
+      },*/
       {
         path: "/cart",
-        element: <Cart />
+        element: <Cart />,
       },
     ],
   },
