@@ -29,20 +29,7 @@ const RestaurantMenu = () => {
 
   if (resInfo === null) return <Shimmer />;
 
-  let name, cuisines, costForTwoMessage;
-
-  if (resInfo?.cards?.[2]?.card?.card?.info) {
-    const { info } = resInfo.cards[2].card.card;
-    name = info.name;
-    cuisines = info.cuisines;
-    costForTwoMessage = info.costForTwoMessage;
-  } else {
-    // Handle the case where resInfo or its nested properties are null or undefined
-    // You might want to set default values or handle it differently based on your application logic
-    name = "KFC";
-    cuisines = [];
-    costForTwoMessage = "200";
-  }
+  const { name, cuisines, costForTwoMessage } = resInfo.cards[2].card.card.info;
 
   // const { itemCards } =
   //   resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
