@@ -56,9 +56,9 @@ const Body = () => {
   const { loggedInUser, setUserName } = useContext(UserContext);
 
   return (
-    <div className="body">
-      <div className="flex justify-start mb-2">
-        <div className="m-6">
+    <div className="m-10">
+      <div className="flex justify-start my-10 mx-10">
+        <div className="">
           <input
             className="p-1 m-1 border border-black-200"
             type="text"
@@ -68,13 +68,14 @@ const Body = () => {
             }}
           />
           <button
-            className="bg-green-200 py-1 px-2 m-1 rounded-lg"
+            className="bg-gradient-to-r from-green-200 to-green-500 p-2 m-1 rounded-lg"
             onClick={handleClick}
           >
             Search
           </button>
         </div>
         <button
+          className="mx-10 p-2 bg-gradient-to-r from-green-200 to-green-500 rounded-lg"
           onClick={() => {
             const filteredList = restaurantList.filter(
               (res) => res.info.avgRating > 4
@@ -86,12 +87,12 @@ const Body = () => {
         </button>
         <input
           type="text"
-          className="m-2 p-2 border border-black"
+          className="m-1 p-1 border border-black"
           value={loggedInUser}
           onChange={(e) => setUserName(e.target.value)}
         />
       </div>
-      <div className="flex flex-wrap justify-between">
+      <div className="m-10 ml-28 flex flex-wrap justify-start gap-4">
         {filteredRestauarnts.map((restaurant) => (
           <Link
             key={restaurant.info.id}

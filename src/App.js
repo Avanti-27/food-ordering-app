@@ -7,25 +7,23 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 
 export default function App() {
-
-  const [userName, setUserName] = useState()
+  const [userName, setUserName] = useState();
 
   useEffect(() => {
     const data = {
       name: "Avanti Tatwawadi",
     };
-    setUserName(data.name)
-  },[])
-
+    setUserName(data.name);
+  }, []);
 
   return (
     <Provider store={appStore}>
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName}}>
-    <div className="App">
-      <Header />
-      <Outlet />
-    </div>
-    </UserContext.Provider>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="App font-serif">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
     </Provider>
   );
 }

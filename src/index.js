@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -11,9 +10,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 //import Grocery from "./components/Grocery";
 
-const Grocery = lazy(() => {
-  import("./components/Grocery");
-});
+// const Grocery = lazy(() => {
+//   import("./components/Grocery");
+// });
 
 const appRouter = createBrowserRouter([
   {
