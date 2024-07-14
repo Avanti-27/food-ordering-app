@@ -22,12 +22,10 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const proxyUrl = "https://api.allorigins.win/get?url=";
-    const targetUrl =
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
-    const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-    const jsonResponse = await response.json();
-    const json = JSON.parse(jsonResponse.contents);
+    const data = await fetch(
+      "http://localhost:8010/proxy/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
 
     console.log(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants

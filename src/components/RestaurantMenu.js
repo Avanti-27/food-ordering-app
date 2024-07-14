@@ -16,13 +16,12 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchMenu = async () => {
-    const proxyUrl = "https://api.allorigins.win/get?url=";
-    const targetUrl =
+    const data = await fetch(
       "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=" +
-      resId;
-    const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-    const jsonResponse = await response.json();
-    const json = JSON.parse(jsonResponse.contents);
+        resId
+    );
+
+    const json = await data.json();
 
     setResInfo(json?.data);
     console.log(json.data);
